@@ -51,7 +51,7 @@ app.get('/anime', (req, res) => {
     res.json(articles)
 })
 
-app.get('/news/:newspaperId', (req, res) => {
+app.get('/anime/:newspaperId', (req, res) => {
     const newspaperId = req.params.newspaperId
 
     const newspapersAddress = newspapers.filter(newspapers => newspapers.name == newspaperId)[0].address
