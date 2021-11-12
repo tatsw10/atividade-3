@@ -24,8 +24,8 @@ exports.findall = (req, res) => {
         ]
 
 
-        newspapers.forEach(newspapers => {
-            axios.get(newspapers.address)
+        
+            await axios.get("https://manganewsnetwork.com/")
                 .then(response => {
                     const html = response.data
                     const $ = cheerio.load(html)
@@ -37,52 +37,54 @@ exports.findall = (req, res) => {
                         articles.push({
                             title,
                             url,
-                            source: newspapers.name
+                            source: "Manga News Network"
                         })
                     })
 
                 })
-        })
 
-        //Aquilo que aparece na pagina inicial 
-        app.get('/', (req, res) => {
-            res.json('See the upcoming anime release')
-        })
-
-        //São os artigos, neste caso os lançamentos de anime
-        app.get('/anime', (req, res) => {
-            res.json(articles)
-        })
-
-
-        app.get('/anime/:newspaperId', (req, res) => {
-            const newspaperId = req.params.newspaperId
-
-            const newspapersAddress = newspapers.filter(newspapers => newspapers.name == newspaperId)[0].address
-
-            axios.get(newspapersAddress)
+                await axios.get("https://animenewsandfacts.com/")
                 .then(response => {
                     const html = response.data
                     const $ = cheerio.load(html)
-                    const specificArticles = []
 
-                    $('a:contains("Release Date")').each((i, element) => {
+                    $('a:contains("Release Date")', html).each(function () {
                         const title = $(this).text()
                         const url = $(this).attr('href')
-                        specificArticles.push({
+
+                        articles.push({
                             title,
                             url,
-                            source: newspaperId
+                            source: "Anime News And Facts"
                         })
                     })
 
                 })
 
+                await axios.get("https://whenwill.net/anime-release-dates/")
+                .then(response => {
+                    const html = response.data
+                    const $ = cheerio.load(html)
+
+                    $('a:contains("Release Date")', html).each(function () {
+                        const title = $(this).text()
+                        const url = $(this).attr('href')
+
+                        articles.push({
+                            title,
+                            url,
+                            source: "When Will"
+                        })
+                    })
+
+                })
+        
+
+
 
             res.json(articles)
-            app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))
+            
 
 
-        })
-    }
+        }
 }
