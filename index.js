@@ -23,7 +23,6 @@ const newspapers = [
 
 const articles = []
 
-//app.METHOD(PATH, HANDLER)
 
 newspapers.forEach(newspapers => {
     axios.get(newspapers.address)
