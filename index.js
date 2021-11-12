@@ -47,7 +47,7 @@ newspapers.forEach(newspapers => {
 
 //Aquilo que aparece na pagina inicial 
 app.get('/', (req , res) => {
-    res.json('See the upcoming anime releases!')
+    res.render('app', { title: "", articles:""})
 })
 
 //São os artigos, neste caso os lançamentos de anime
