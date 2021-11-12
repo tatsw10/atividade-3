@@ -23,6 +23,8 @@ const newspapers = [
 
 const articles = []
 
+//app.METHOD(PATH, HANDLER)
+
 newspapers.forEach(newspapers => {
     axios.get(newspapers.address)
     .then(response => {
@@ -43,13 +45,16 @@ newspapers.forEach(newspapers => {
     })
 })
 
+//Aquilo que aparece na pagina inicial 
 app.get('/', (req , res) => {
-    res.json('Anime News')
+    res.json('See the upcoming anime releases!')
 })
 
+//São os artigos, neste caso os lançamentos de anime
 app.get('/anime', (req, res) => {
     res.json(articles)
 })
+
 
 app.get('/anime/:newspaperId', (req, res) => {
     const newspaperId = req.params.newspaperId
