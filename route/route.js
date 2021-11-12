@@ -6,5 +6,5 @@ module.exports = app => {
     
     router.get("/", controller.findall)
     
-    app.use('/api/gpus', router);
+    app.use('/anime', router);
     };

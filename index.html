@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Anime Releases </title>
@@ -8,6 +9,19 @@
 
 <body>
     <div id="feed"></div>
-<script scr="src/app.js"></script>
+    <div class="d-flex justify-content-center">
+        <table class="table table-hover table-dark col-lg-9" id="myTable">
+            <thead>
+                <tr class="tr">
+                    <th class="th">Title</th>
+                    <th class="th">URL</th>
+                    <th class="th">Seller</th>
+                </tr>
+            </thead>
+            <tbody class="td" id="tableData"></tbody>
+        </table>
+    </div>
+    <script scr="src/app.js"></script>
 </body>
+
 </html>

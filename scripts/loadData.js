@@ -1,6 +1,6 @@
 window.onload = () => {
     (async () => {
-        const url = "/api/gpus"
+        const url = "/anime"
         const tableBody = document.getElementById("tableData")
 
         var request = new Request(url)
@@ -8,10 +8,10 @@ window.onload = () => {
         await fetch(request).then( async function (response) {
             var dataHtml = ""
     
-            gpus = await response.json()
+            animes = await response.json()
 
-            gpus.forEach(gpu => {
-                dataHtml += `<tr><td><a href="${gpu.url}">${gpu.gpuName}</a><td>${gpu.price}</td></td><td><a href="${gpu.sellerUrl}"</a> ${gpu.sellerName} </td></tr>`
+            animes.forEach(anime => {
+                dataHtml += `<tr><td><a href="${anime.url}">${anime.title}</a><td>${anime.source}</td></td></tr>`
             })
     
             tableBody.innerHTML = dataHtml
