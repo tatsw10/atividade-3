@@ -6,7 +6,7 @@ window.onload = () => {
         var request = new Request(url)
 
         await fetch(request).then( async function (response) {
-            var dataHtml = ""
+            let dataHtml = ""
     
             animes = await response.json()
 
