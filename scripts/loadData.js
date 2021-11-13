@@ -1,20 +1,25 @@
 window.onload = () => {
-    (async () => {
+    getdata()
+
+    async function getdata(){
         const url = "/anime"
-        const tableBody = document.getElementById("tableData")
-
         var request = new Request(url)
-
+      
         await fetch(request).then( async function (response) {
             let dataHtml = ""
-    
-            animes = await response.json()
-
+      
+            var animes = await response.json()
+            console.log(animes)
             animes.forEach(anime => {
-                dataHtml += `<tr><td><a href="${anime.url}">${anime.title}</a><td>${anime.source}</td></td></tr>`
+                dataHtml += `<tr>
+                <td>${anime.title}</td>
+                <td><a href=${anime.url}> Link </a></td>
+                <td>${anime.source}</td>
+                </tr>`;
             })
     
-            tableBody.innerHTML = dataHtml
+            document.getElementById("tableData").innerHTML = dataHtml
         })
-    })();
+    }
+    
 }
